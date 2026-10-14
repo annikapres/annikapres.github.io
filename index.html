@@ -5,93 +5,296 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Annika Preston</title>
 <meta name="description" content="Annika Preston — resume and portfolio.">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <style>
-  body { max-width: 720px; margin-inline: auto; }
-  header.hero { text-align: center; padding-block: 2rem 1rem; }
-  header.hero h1 { margin-bottom: 0.25rem; }
-  header.hero p { margin-bottom: 0.5rem; color: var(--pico-muted-color); }
-  .contact-links a { margin-inline: 0.4rem; }
-  section { margin-bottom: 2rem; }
-  h2 { border-bottom: 1px solid var(--pico-muted-border-color); padding-bottom: 0.3rem; }
-  article { margin-bottom: 1.25rem; }
-  article h3 { margin-bottom: 0.1rem; }
-  .meta { color: var(--pico-muted-color); font-size: 0.9rem; margin-top: 0; margin-bottom: 0.5rem; }
-  ul.tight li { margin-bottom: 0.35rem; }
-  .tags span { display: inline-block; background: var(--pico-secondary-background); border-radius: 0.5rem; padding: 0.15rem 0.6rem; margin: 0.2rem 0.3rem 0.2rem 0; font-size: 0.85rem; }
-  footer { text-align: center; color: var(--pico-muted-color); font-size: 0.85rem; padding-block: 1.5rem; }
+  :root {
+    --accent: #1d6fa5;
+    --ink: #1c2530;
+    --muted: #677282;
+    --line: #e4e8ee;
+    --paper: #ffffff;
+    --wash: #f5f7fa;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--wash);
+    line-height: 1.55;
+  }
+
+  a { color: var(--accent); }
+
+  .page {
+    max-width: 760px;
+    margin-inline: auto;
+    padding: 0 1.25rem 3rem;
+  }
+
+  /* Header */
+  .hero {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+  }
+  .hero .eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 2.5rem;
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+  }
+  .hero .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .hero .contact-row a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 2rem;
+    padding: 0.4rem 1rem;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .hero .contact-row a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Section cards */
+  section.card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  section.card h2 {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 1.25rem;
+  }
+
+  /* Timeline-style entries */
+  .entry {
+    position: relative;
+    padding-left: 1.1rem;
+    border-left: 2px solid var(--line);
+    padding-bottom: 1.4rem;
+  }
+  .entry:last-child { padding-bottom: 0; }
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 0.3rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .entry h3 {
+    margin: 0 0 0.1rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .entry .role {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 0.6rem;
+  }
+  .entry ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .entry ul li {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+  .entry p.summary {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* Skills */
+  .skill-group { margin-bottom: 1rem; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 0.5rem;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .chips span {
+    font-size: 0.8rem;
+    background: var(--wash);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.65rem;
+  }
+
+  /* Activities list */
+  .activity-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .activity-list li {
+    font-size: 0.9rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .activity-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .activity-list strong { color: var(--accent); }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding-top: 1rem;
+  }
+
+  /* Color picker */
+  .color-picker {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 2rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    z-index: 10;
+  }
+  .color-picker input[type="color"] {
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: none;
+  }
+  @media print {
+    .color-picker { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2rem; }
+    section.card { padding: 1.25rem; }
+  }
 </style>
 </head>
 <body>
-<main class="container">
+
+<div class="color-picker">
+  <label for="accentColor">Accent</label>
+  <input type="color" id="accentColor" value="#1d6fa5" aria-label="Pick accent color">
+</div>
+
+<div class="page">
 
   <header class="hero">
+    <span class="eyebrow">Resume</span>
     <h1>Annika Preston</h1>
-    <p class="contact-links">
+    <div class="contact-row">
       <a href="mailto:apreston1@babson.edu">apreston1@babson.edu</a>
-      &middot;
       <a href="http://www.linkedin.com/in/annika-preston-113046257" target="_blank" rel="noopener">LinkedIn</a>
-    </p>
+    </div>
   </header>
 
-  <section id="education">
+  <section class="card" id="education">
     <h2>Education</h2>
-    <article>
+
+    <div class="entry">
       <h3>Babson College, F.W. Olin Graduate School of Business</h3>
-      <p class="meta">Wellesley, MA &middot; September 2026 – December 2027</p>
-      <p>M.S. in Business Analytics Candidate</p>
-    </article>
-    <article>
+      <p class="role">Wellesley, MA &middot; September 2026 – December 2027</p>
+      <p class="summary">M.S. in Business Analytics Candidate</p>
+    </div>
+    <div class="entry">
       <h3>Stonehill College</h3>
-      <p class="meta">Easton, MA &middot; August 2022 – May 2026</p>
-      <p>B.S.B.A., Marketing, Entrepreneurship | Magna Cum Laude, Moreau Honors Program Scholar</p>
-    </article>
-    <article>
+      <p class="role">Easton, MA &middot; August 2022 – May 2026</p>
+      <p class="summary">B.S.B.A., Marketing, Entrepreneurship | Magna Cum Laude, Moreau Honors Program Scholar</p>
+    </div>
+    <div class="entry">
       <h3>Istituto Lorenzo de' Medici</h3>
-      <p class="meta">Florence, Italy &middot; Spring 2025, Study Abroad</p>
-    </article>
+      <p class="role">Florence, Italy &middot; Spring 2025, Study Abroad</p>
+    </div>
   </section>
 
-  <section id="experience">
+  <section class="card" id="experience">
     <h2>Experience</h2>
 
-    <article>
+    <div class="entry">
       <h3>HillFuel Capstone Group, Stonehill College</h3>
-      <p class="meta">Partner &middot; January 2026 – May 2026</p>
-      <ul class="tight">
+      <p class="role">Partner &middot; January 2026 – May 2026</p>
+      <ul>
         <li>Developed and launched a smoothie and performance drink pop-up, designed to provide students and athletes with convenient, high-protein, grab-and-go options at Stonehill College</li>
         <li>Conducted 20 weekly student interviews to validate demand</li>
         <li>Executed a successful pop-up event, gathered direct customer feedback to refine the concept and value proposition</li>
         <li>Developed financial projections and future operating plan for the concept, explaining how Stonehill could eventually take over and incorporate purchases into meal swipes</li>
         <li>Presented findings to HawkTank at Stonehill, pitching idea to audience of business professionals, faculty and students</li>
       </ul>
-    </article>
+    </div>
 
-    <article>
+    <div class="entry">
       <h3>Bodylines Pilates</h3>
-      <p class="meta">Harvard, MA &middot; Marketing Intern &middot; May 2025 – September 2025</p>
-      <ul class="tight">
+      <p class="role">Harvard, MA &middot; Marketing Intern &middot; May 2025 – September 2025</p>
+      <ul>
         <li>Created and managed 4+ weekly social media posts and stories across Instagram and Facebook and used audience reach and engagement trends to develop content that increased overall engagement by 400%</li>
         <li>Analyzed social media performance metrics including likes, shares, comments, and reach to identify high-performing content and adjust future marketing strategies</li>
         <li>Conducted competitor and audience research to identify content trends and developed a 6-month marketing plan focused on increasing brand awareness, audience, and studio growth for small business operations</li>
         <li>Represented studio at a Chamber of Commerce networking event, engaging with 40+ attendees and built connections within local business community</li>
       </ul>
-    </article>
+    </div>
 
-    <article>
+    <div class="entry">
       <h3>Anthony's Coal Fired Pizza</h3>
-      <p class="meta">Littleton, MA &middot; Server &middot; July 2021 – Present</p>
-      <ul class="tight">
+      <p class="role">Littleton, MA &middot; Server &middot; July 2021 – Present</p>
+      <ul>
         <li>Manage 5–8 tables in a fast-paced environment while delivering attentive, personalized customer service, and maintaining a positive guest experience</li>
         <li>Train and mentor new employees on company procedures, service standards, and best customer service practices</li>
         <li>Collaborate with team members to manage orders, coordinate service, and maintain an organized and welcoming dining environment</li>
       </ul>
-    </article>
+    </div>
   </section>
 
-  <section id="activities">
+  <section class="card" id="activities">
     <h2>Extracurricular Activities</h2>
-    <ul class="tight">
+    <ul class="activity-list">
       <li><strong>Honors Societies:</strong> Beta Gamma Sigma Honors Society, Lambda Epsilon Sigma Honors Society, Alpha Mu Alpha National Honors Society, Moreau Honors Program</li>
       <li><strong>Leadership:</strong> Treasurer of Women in Business</li>
       <li><strong>Athletics:</strong> D1 Track and Field, Freshman Year</li>
@@ -99,15 +302,20 @@
     </ul>
   </section>
 
-  <section id="skills">
+  <section class="card" id="skills">
     <h2>Skills &amp; Certifications</h2>
-    <p><strong>Tools</strong></p>
-    <div class="tags">
-      <span>Python</span><span>R</span><span>Tableau</span><span>SQL</span><span>Power BI</span><span>SAS</span><span>Claude</span><span>Canva</span>
+
+    <div class="skill-group">
+      <h4>Tools</h4>
+      <div class="chips">
+        <span>Python</span><span>R</span><span>Tableau</span><span>SQL</span><span>Power BI</span><span>SAS</span><span>Claude</span><span>Canva</span>
+      </div>
     </div>
-    <p><strong>Certifications</strong></p>
-    <div class="tags">
-      <span>Excel (Mastery)</span><span>Bloomberg Market Concepts</span><span>Inside LVMH: Creation &amp; Branding</span><span>Inside LVMH: Retail &amp; Customer Experience</span>
+    <div class="skill-group">
+      <h4>Certifications</h4>
+      <div class="chips">
+        <span>Excel (Mastery)</span><span>Bloomberg Market Concepts</span><span>Inside LVMH: Creation &amp; Branding</span><span>Inside LVMH: Retail &amp; Customer Experience</span>
+      </div>
     </div>
   </section>
 
@@ -115,6 +323,20 @@
     &copy; 2026 Annika Preston
   </footer>
 
-</main>
+</div>
+
+<script>
+  const picker = document.getElementById('accentColor');
+  const saved = localStorage.getItem('accentColor');
+  if (saved) {
+    document.documentElement.style.setProperty('--accent', saved);
+    picker.value = saved;
+  }
+  picker.addEventListener('input', (e) => {
+    document.documentElement.style.setProperty('--accent', e.target.value);
+    localStorage.setItem('accentColor', e.target.value);
+  });
+</script>
 </body>
 </html>
+
