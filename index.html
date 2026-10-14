@@ -10,12 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --accent: #1d6fa5;
-    --ink: #1c2530;
-    --muted: #677282;
-    --line: #e4e8ee;
+    --accent: #5b9bd5;
+    --accent-dark: #3d7cb8;
+    --ink: #2b2b2b;
+    --muted: #6b6b6b;
+    --line: #e1edf6;
     --paper: #ffffff;
-    --wash: #f5f7fa;
+    --wash: #eaf3fa;
+    --band-start: #8fc1e3;
+    --band-end: #c7deef;
   }
 
   * { box-sizing: border-box; }
@@ -28,114 +31,81 @@
     line-height: 1.55;
   }
 
-  a { color: var(--accent); }
+  a { color: var(--accent-dark); }
 
-  .page {
-    max-width: 760px;
-    margin-inline: auto;
-    padding: 0 1.25rem 3rem;
-  }
+  .page { max-width: 760px; margin-inline: auto; padding-bottom: 3rem; }
 
-  /* Header */
+  /* Header band */
   .hero {
     text-align: center;
-    padding: 3rem 1rem 2rem;
-  }
-  .hero .eyebrow {
-    display: inline-block;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 0.6rem;
+    padding: 3rem 1.25rem 2.25rem;
+    background: linear-gradient(135deg, var(--band-start), var(--band-end));
+    color: #fff;
   }
   .hero h1 {
     font-family: 'Lora', serif;
-    font-style: italic;
-    font-size: 2.5rem;
-    margin: 0 0 0.75rem;
-    color: var(--ink);
+    font-size: 2.3rem;
+    margin: 0 0 0.5rem;
+    color: #fff;
+  }
+  .hero .subtitle {
+    font-size: 0.95rem;
+    margin: 0 0 0.9rem;
+    color: rgba(255,255,255,0.92);
   }
   .hero .contact-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.5rem 1.2rem;
+    font-size: 0.85rem;
   }
   .hero .contact-row a {
-    text-decoration: none;
-    font-size: 0.85rem;
+    text-decoration: underline;
+    color: #fff;
     font-weight: 500;
-    color: var(--ink);
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 2rem;
-    padding: 0.4rem 1rem;
-    transition: border-color 0.15s, color 0.15s;
   }
-  .hero .contact-row a:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+
+  .page-body { padding: 0 1.25rem; }
 
   /* Section cards */
   section.card {
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     padding: 1.75rem;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem auto 0;
+    max-width: 660px;
+    text-align: left;
   }
   section.card h2 {
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-dark);
     font-weight: 700;
-    margin: 0 0 1.25rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
   }
 
-  /* Timeline-style entries */
-  .entry {
-    position: relative;
-    padding-left: 1.1rem;
-    border-left: 2px solid var(--line);
-    padding-bottom: 1.4rem;
-  }
-  .entry:last-child { padding-bottom: 0; }
-  .entry::before {
-    content: "";
-    position: absolute;
-    left: -5px;
-    top: 0.3rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-  .entry h3 {
-    margin: 0 0 0.1rem;
-    font-size: 1rem;
-    font-weight: 600;
-  }
+  .summary-card { font-size: 0.92rem; }
+
+  /* Entries */
+  .entry { margin-bottom: 1.4rem; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry h3 { margin: 0; font-size: 1rem; font-weight: 700; }
   .entry .role {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin: 0 0 0.6rem;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--accent-dark);
+    margin: 0.1rem 0 0.3rem;
   }
-  .entry ul {
-    margin: 0;
-    padding-left: 1.1rem;
-  }
-  .entry ul li {
-    font-size: 0.9rem;
-    margin-bottom: 0.4rem;
-  }
-  .entry p.summary {
-    font-size: 0.9rem;
-    margin: 0;
-  }
+  .entry ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+  .entry ul li { font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .entry p.summary { font-size: 0.9rem; margin: 0.3rem 0 0; }
+  .entry .dates { font-size: 0.8rem; color: var(--muted); }
 
   /* Skills */
   .skill-group { margin-bottom: 1rem; }
@@ -147,196 +117,150 @@
     color: var(--muted);
     margin: 0 0 0.5rem;
   }
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .chips span {
     font-size: 0.8rem;
     background: var(--wash);
     border: 1px solid var(--line);
-    color: var(--ink);
+    color: var(--accent-dark);
     border-radius: 0.5rem;
     padding: 0.25rem 0.65rem;
   }
 
   /* Activities list */
-  .activity-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+  .activity-list { list-style: none; margin: 0; padding: 0; }
   .activity-list li {
     font-size: 0.9rem;
     padding: 0.6rem 0;
     border-bottom: 1px solid var(--line);
   }
   .activity-list li:last-child { border-bottom: none; padding-bottom: 0; }
-  .activity-list strong { color: var(--accent); }
+  .activity-list strong { color: var(--accent-dark); }
 
   footer {
     text-align: center;
     color: var(--muted);
     font-size: 0.8rem;
-    padding-top: 1rem;
-  }
-
-  /* Color picker */
-  .color-picker {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 2rem;
-    padding: 0.4rem 0.75rem;
-    font-size: 0.75rem;
-    color: var(--muted);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    z-index: 10;
-  }
-  .color-picker input[type="color"] {
-    width: 1.6rem;
-    height: 1.6rem;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    background: none;
-  }
-  @media print {
-    .color-picker { display: none; }
+    padding-top: 1.5rem;
   }
 
   @media (max-width: 480px) {
-    .hero h1 { font-size: 2rem; }
+    .hero h1 { font-size: 1.9rem; }
     section.card { padding: 1.25rem; }
   }
 </style>
 </head>
 <body>
 
-<div class="color-picker">
-  <label for="accentColor">Accent</label>
-  <input type="color" id="accentColor" value="#1d6fa5" aria-label="Pick accent color">
-</div>
-
 <div class="page">
 
   <header class="hero">
-    <span class="eyebrow">Resume</span>
     <h1>Annika Preston</h1>
+    <p class="subtitle">M.S. Business Analytics Candidate &middot; Marketing Graduate</p>
     <div class="contact-row">
+      <span>Wellesley, MA</span>
       <a href="mailto:apreston1@babson.edu">apreston1@babson.edu</a>
       <a href="http://www.linkedin.com/in/annika-preston-113046257" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </header>
 
-  <section class="card" id="education">
-    <h2>Education</h2>
-
-    <div class="entry">
-      <h3>Babson College, F.W. Olin Graduate School of Business</h3>
-      <p class="role">Wellesley, MA &middot; September 2026 – December 2027</p>
-      <p class="summary">M.S. in Business Analytics Candidate</p>
-    </div>
-    <div class="entry">
-      <h3>Stonehill College</h3>
-      <p class="role">Easton, MA &middot; August 2022 – May 2026</p>
-      <p class="summary">B.S.B.A., Marketing, Entrepreneurship | Magna Cum Laude, Moreau Honors Program Scholar</p>
-    </div>
-    <div class="entry">
-      <h3>Istituto Lorenzo de' Medici</h3>
-      <p class="role">Florence, Italy &middot; Spring 2025, Study Abroad</p>
-    </div>
+  <section class="card summary-card">
+    <p>Business analytics graduate student at Babson College with a marketing and entrepreneurship background from Stonehill College. Skilled at translating data into decisions, building client relationships, and delivering results across marketing, operations, and customer-facing roles.</p>
   </section>
 
-  <section class="card" id="experience">
-    <h2>Experience</h2>
+  <div class="page-body">
 
-    <div class="entry">
-      <h3>HillFuel Capstone Group, Stonehill College</h3>
-      <p class="role">Partner &middot; January 2026 – May 2026</p>
-      <ul>
-        <li>Developed and launched a smoothie and performance drink pop-up, designed to provide students and athletes with convenient, high-protein, grab-and-go options at Stonehill College</li>
-        <li>Conducted 20 weekly student interviews to validate demand</li>
-        <li>Executed a successful pop-up event, gathered direct customer feedback to refine the concept and value proposition</li>
-        <li>Developed financial projections and future operating plan for the concept, explaining how Stonehill could eventually take over and incorporate purchases into meal swipes</li>
-        <li>Presented findings to HawkTank at Stonehill, pitching idea to audience of business professionals, faculty and students</li>
-      </ul>
-    </div>
+    <section class="card" id="education">
+      <h2>Education</h2>
 
-    <div class="entry">
-      <h3>Bodylines Pilates</h3>
-      <p class="role">Harvard, MA &middot; Marketing Intern &middot; May 2025 – September 2025</p>
-      <ul>
-        <li>Created and managed 4+ weekly social media posts and stories across Instagram and Facebook and used audience reach and engagement trends to develop content that increased overall engagement by 400%</li>
-        <li>Analyzed social media performance metrics including likes, shares, comments, and reach to identify high-performing content and adjust future marketing strategies</li>
-        <li>Conducted competitor and audience research to identify content trends and developed a 6-month marketing plan focused on increasing brand awareness, audience, and studio growth for small business operations</li>
-        <li>Represented studio at a Chamber of Commerce networking event, engaging with 40+ attendees and built connections within local business community</li>
-      </ul>
-    </div>
-
-    <div class="entry">
-      <h3>Anthony's Coal Fired Pizza</h3>
-      <p class="role">Littleton, MA &middot; Server &middot; July 2021 – Present</p>
-      <ul>
-        <li>Manage 5–8 tables in a fast-paced environment while delivering attentive, personalized customer service, and maintaining a positive guest experience</li>
-        <li>Train and mentor new employees on company procedures, service standards, and best customer service practices</li>
-        <li>Collaborate with team members to manage orders, coordinate service, and maintain an organized and welcoming dining environment</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="card" id="activities">
-    <h2>Extracurricular Activities</h2>
-    <ul class="activity-list">
-      <li><strong>Honors Societies:</strong> Beta Gamma Sigma Honors Society, Lambda Epsilon Sigma Honors Society, Alpha Mu Alpha National Honors Society, Moreau Honors Program</li>
-      <li><strong>Leadership:</strong> Treasurer of Women in Business</li>
-      <li><strong>Athletics:</strong> D1 Track and Field, Freshman Year</li>
-      <li><strong>Senior Project:</strong> Worked closely with team at Roche Brothers to incorporate a new marketing strategy to Gen Z. Presented varying ideas for corporate to implement within upcoming months.</li>
-    </ul>
-  </section>
-
-  <section class="card" id="skills">
-    <h2>Skills &amp; Certifications</h2>
-
-    <div class="skill-group">
-      <h4>Tools</h4>
-      <div class="chips">
-        <span>Python</span><span>R</span><span>Tableau</span><span>SQL</span><span>Power BI</span><span>SAS</span><span>Claude</span><span>Canva</span>
+      <div class="entry">
+        <h3>Babson College, F.W. Olin Graduate School of Business</h3>
+        <p class="role">M.S. in Business Analytics Candidate</p>
+        <p class="dates">Wellesley, MA &middot; September 2026 – December 2027</p>
       </div>
-    </div>
-    <div class="skill-group">
-      <h4>Certifications</h4>
-      <div class="chips">
-        <span>Excel (Mastery)</span><span>Bloomberg Market Concepts</span><span>Inside LVMH: Creation &amp; Branding</span><span>Inside LVMH: Retail &amp; Customer Experience</span>
+      <div class="entry">
+        <h3>Stonehill College</h3>
+        <p class="role">B.S.B.A., Marketing, Entrepreneurship | Magna Cum Laude, Moreau Honors Program Scholar</p>
+        <p class="dates">Easton, MA &middot; August 2022 – May 2026</p>
       </div>
-    </div>
-  </section>
+      <div class="entry">
+        <h3>Istituto Lorenzo de' Medici</h3>
+        <p class="role">Study Abroad</p>
+        <p class="dates">Florence, Italy &middot; Spring 2025</p>
+      </div>
+    </section>
 
-  <footer>
-    &copy; 2026 Annika Preston
-  </footer>
+    <section class="card" id="experience">
+      <h2>Experience</h2>
 
+      <div class="entry">
+        <h3>HillFuel Capstone Group, Stonehill College</h3>
+        <p class="role">Partner &middot; January 2026 – May 2026</p>
+        <ul>
+          <li>Developed and launched a smoothie and performance drink pop-up, designed to provide students and athletes with convenient, high-protein, grab-and-go options at Stonehill College</li>
+          <li>Conducted 20 weekly student interviews to validate demand</li>
+          <li>Executed a successful pop-up event, gathered direct customer feedback to refine the concept and value proposition</li>
+          <li>Developed financial projections and future operating plan for the concept, explaining how Stonehill could eventually take over and incorporate purchases into meal swipes</li>
+          <li>Presented findings to HawkTank at Stonehill, pitching idea to audience of business professionals, faculty and students</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Bodylines Pilates</h3>
+        <p class="role">Marketing Intern &middot; May 2025 – September 2025</p>
+        <ul>
+          <li>Created and managed 4+ weekly social media posts and stories across Instagram and Facebook and used audience reach and engagement trends to develop content that increased overall engagement by 400%</li>
+          <li>Analyzed social media performance metrics including likes, shares, comments, and reach to identify high-performing content and adjust future marketing strategies</li>
+          <li>Conducted competitor and audience research to identify content trends and developed a 6-month marketing plan focused on increasing brand awareness, audience, and studio growth for small business operations</li>
+          <li>Represented studio at a Chamber of Commerce networking event, engaging with 40+ attendees and built connections within local business community</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <h3>Anthony's Coal Fired Pizza</h3>
+        <p class="role">Server &middot; July 2021 – Present</p>
+        <ul>
+          <li>Manage 5–8 tables in a fast-paced environment while delivering attentive, personalized customer service, and maintaining a positive guest experience</li>
+          <li>Train and mentor new employees on company procedures, service standards, and best customer service practices</li>
+          <li>Collaborate with team members to manage orders, coordinate service, and maintain an organized and welcoming dining environment</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" id="activities">
+      <h2>Extracurricular Activities</h2>
+      <ul class="activity-list">
+        <li><strong>Honors Societies:</strong> Beta Gamma Sigma Honors Society, Lambda Epsilon Sigma Honors Society, Alpha Mu Alpha National Honors Society, Moreau Honors Program</li>
+        <li><strong>Leadership:</strong> Treasurer of Women in Business</li>
+        <li><strong>Athletics:</strong> D1 Track and Field, Freshman Year</li>
+        <li><strong>Senior Project:</strong> Worked closely with team at Roche Brothers to incorporate a new marketing strategy to Gen Z. Presented varying ideas for corporate to implement within upcoming months.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="skills">
+      <h2>Skills &amp; Certifications</h2>
+
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <div class="chips">
+          <span>Python</span><span>R</span><span>Tableau</span><span>SQL</span><span>Power BI</span><span>SAS</span><span>Claude</span><span>Canva</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Certifications</h4>
+        <div class="chips">
+          <span>Excel (Mastery)</span><span>Bloomberg Market Concepts</span><span>Inside LVMH: Creation &amp; Branding</span><span>Inside LVMH: Retail &amp; Customer Experience</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 Annika Preston
+    </footer>
+
+  </div>
 </div>
-
-<script>
-  const picker = document.getElementById('accentColor');
-  const saved = localStorage.getItem('accentColor');
-  if (saved) {
-    document.documentElement.style.setProperty('--accent', saved);
-    picker.value = saved;
-  }
-  picker.addEventListener('input', (e) => {
-    document.documentElement.style.setProperty('--accent', e.target.value);
-    localStorage.setItem('accentColor', e.target.value);
-  });
-</script>
 </body>
 </html>
+
 
